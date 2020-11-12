@@ -2,6 +2,8 @@
 
 namespace Blocks\Blocks;
 
+use Blocks\Plugin;
+
 abstract class Block
 {
     protected $namespace;
@@ -18,9 +20,9 @@ abstract class Block
     {
         wp_register_script(
             'webreact-brantjes-block-' . $this->name,
-            plugins_url('dist/scripts/' . $this->name . '.js', BRANTJES_BLOCK_FILE),
+            plugins_url('dist/scripts/' . $this->name . '.js', BPT_FILE),
             [],
-            filemtime(BrantjesBlocks::getBlockBasePath() . ucfirst($this->name) . '/' . $this->name . '.js')
+            filemtime(Plugin::getBlockBasePath() . ucfirst($this->name) . '/' . $this->name . '.js')
         );
 
         wp_localize_script(

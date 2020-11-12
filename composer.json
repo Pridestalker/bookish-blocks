@@ -4,5 +4,8 @@
     "psr-4": {
       "Blocks\\": "src/"
     }
+  },
+  "config": {
+    "optimize-autoloader": true
   }
 }
