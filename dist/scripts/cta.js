@@ -2606,6 +2606,9 @@ var Edit = /*#__PURE__*/function (_Component) {
 
     _this = _super.call(this, props);
     _this.handleMediaUploadChange = _this.handleMediaUploadChange.bind(_assertThisInitialized(_this));
+    _this._renderMediaUpload = _this._renderMediaUpload.bind(_assertThisInitialized(_this));
+    _this._renderLabelInput = _this._renderLabelInput.bind(_assertThisInitialized(_this));
+    _this._renderUrlInput = _this._renderUrlInput.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -2639,17 +2642,76 @@ var Edit = /*#__PURE__*/function (_Component) {
   }, {
     key: "_renderLabelInput",
     value: function _renderLabelInput() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__["PlainText"], null);
+      var _this2 = this;
+
+      var title = this.props.attributes.title;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__["PlainText"], {
+        value: title,
+        onChange: function onChange(title) {
+          return _this2.props.setAttributes({
+            title: title
+          });
+        },
+        placeholder: 'Begin met schrijven om een label in te vullen.'
+      });
+    }
+  }, {
+    key: "_renderUrlInput",
+    value: function _renderUrlInput() {
+      var _this3 = this;
+
+      var url = this.props.attributes.url;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__["PlainText"], {
+        value: url,
+        onChange: function onChange(url) {
+          return _this3.props.setAttributes({
+            url: url
+          });
+        },
+        placeholder: 'Plaats hier de link naar de pagina'
+      });
     }
   }, {
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", null, this._renderMediaUpload(), this._renderLabelInput());
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", null, this._renderMediaUpload(), this._renderLabelInput(), this._renderUrlInput());
     }
   }]);
 
   return Edit;
 }(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["Component"]);
+
+/***/ }),
+
+/***/ "./src/blocks/CTA/cta.frontend.jsx":
+/*!*****************************************!*\
+  !*** ./src/blocks/CTA/cta.frontend.jsx ***!
+  \*****************************************/
+/*! exports provided: save */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "save", function() { return save; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+function save(_ref) {
+  var attributes = _ref.attributes;
+  var img = attributes.img,
+      title = attributes.title,
+      url = attributes.url;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("figure", {
+    className: 'category-cta'
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("picture", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    src: "/?p=".concat(img),
+    loading: 'lazy'
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("figcaption", null, title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    href: url,
+    title: title,
+    name: title
+  }));
+}
 
 /***/ }),
 
@@ -2665,6 +2727,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _cta_editor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./cta.editor */ "./src/blocks/CTA/cta.editor.jsx");
+/* harmony import */ var _cta_frontend__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./cta.frontend */ "./src/blocks/CTA/cta.frontend.jsx");
+
 
 
 Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__["registerBlockType"])("".concat(config.namespace, "/").concat(config.name), {
@@ -2682,9 +2746,7 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__["registerBlockType"])("".c
     }
   },
   edit: _cta_editor__WEBPACK_IMPORTED_MODULE_1__["Edit"],
-  save: function save() {
-    return null;
-  }
+  save: _cta_frontend__WEBPACK_IMPORTED_MODULE_2__["save"]
 });
 
 /***/ }),

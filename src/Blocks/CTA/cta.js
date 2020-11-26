@@ -1,5 +1,6 @@
 import { registerBlockType } from "@wordpress/blocks";
 import { Edit } from "./cta.editor";
+import { save } from "./cta.frontend";
 
 registerBlockType(
     `${config.namespace}/${config.name}`,
@@ -18,6 +19,6 @@ registerBlockType(
             },
         },
         edit: Edit,
-        save: () => null,
+        save,
     }
 )
